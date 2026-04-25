@@ -11,3 +11,6 @@ Steps to using:
 4. set up your phone by downloading fluidsynth and Bluetooth MIDI Connect on the playstore(not sure on IOS, I don't have access to an IOS device to test on) and connecting to your microcontroller via the Bluetooth MIDI Connect application (you cannot connect via normal bluetooth because it is over BLE). It should be named "BLE-MIDI".
 5. once completed, open fluidsynth and make "BLE-MIDI" your MIDI Output Port.
 6. ### play with your new instrument!!!
+<br/>
+
+#### Look at latest release for examples of it in action!
