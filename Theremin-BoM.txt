@@ -1,0 +1,13 @@
+As of April 2026:
+
+Arduino NANO RP2040 - $21.30 
+(https://store-usa.arduino.cc/products/arduino-nano-rp2040-connect?srsltid=AfmBOopeXyqHHdXbCA7mwhEQbHPeIYwUnaMejNONLGpKulFoztRWV597)
+
+breadboard - $5-$10 (buys multiple, only one needed for this project)
+(https://www.amazon.com/s?k=breadboard&crid=HT6AQYLA18HX&sprefix=breadboard%2Caps%2C192&ref=nb_sb_noss_1)
+
+wires(male to female) - $3.99
+(https://www.amazon.com/California-JOS-Breadboard-Optional-Multicolored/dp/B0BRTHR2RL/ref=sr_1_10?crid=2O30XOZUAGTMI&dib=eyJ2IjoiMSJ9.VcNFeYpulSX_NTIy1KXkQnQQYZiq4QOkGTkAhFTSVzlwp0J-5cspsohY9EPOvH88aOGjWtuoG_8i_A7BJtF8Ya6xk5NBCBXrcmdXQy4LrehShsofjKKhZ97SUgEpbLZZc-W_KUz0HK1RoQg-ZUC2Rtg52Pwsb8sZcJG16AS-MY7wSyfhb4yXoiUlw9Do5aQzcsfd0Kgexo7A0PkZslsY2-WmXGJ64obzozkYwPtHiz1A1fC6qIm7uJQhETKdUoktKylpSz8eIrruURML6F28DTcy0HiGvN8KiqWW07igwcY.Sv2FtCzaBOBLC_0CYuh7yWp0F-T_szwSgZ2qGHfwZfk&dib_tag=se&keywords=wires&qid=1777504330&sbo=RZvfv%2F%2FHxDF%2BO5021pAnSA%3D%3D&sprefix=wires%2Caps%2C172&sr=8-10&th=1)
+
+resistors - $3.99 (buys 100, for this project you need 3) 
+(https://www.amazon.com/California-JOS-Tolerance-Resistor-Resistance/dp/B0BDKV2TY5/ref=sr_1_7?crid=3CQM36YICSJGP&dib=eyJ2IjoiMSJ9.7V2s33AVp7MWKTo1RQJG4rXVuhlrXtziUDS8ikS6u785CMQ-sQ1RYC-8enwTaN5XCEJo2hrBGKpn6F30O_HBltS2BaJVK-_h6HRU2oZirad_pkf2639ltvTFlD-5kwYZLdfnj8XlOW5OQX24OIXHSh7zs6gtTzuaUY9wLuvRLPu1FMRRqa7pOu9YuGJHTi7ZGlzHZE2Q2ebn7geQsammZQCYlqRwhiW7o8TVT-P3ogM.uo_HD8nUTvPlRfLAKxEvrADwe2sI-RPc1NEn2L8yiPY&dib_tag=se&keywords=1k%2Bresistors&qid=1777504434&sbo=RZvfv%2F%2FHxDF%2BO5021pAnSA%3D%3D&sprefix=1k%2Bresistor%2Caps%2C163&sr=8-7&th=1)
