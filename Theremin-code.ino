@@ -1,3 +1,4 @@
+#include <MIDI.h>
 #include <BLEMIDI_Transport.h>
 #include <hardware/BLEMIDI_ArduinoBLE.h>
 #include <NewPing.h>
@@ -13,7 +14,13 @@ NewPing sonar2(TrigPin2, EchoPin2, MaxDist);
 
 int sensor1Dist = 0;
 int sensor2Dist = 0;
+int oldDist = 170; 
+int olderDist = 170; 
+int viableChange = 3; 
+int movingAmt = 5;
 int lastNote = -1; // tracks currently playing note
+float amtChange = 0.75; // play with to get perfect
+float smoothed = 0;
 
 BLEMIDI_CREATE_DEFAULT_INSTANCE();
 bool isConnected = false;
@@ -38,38 +45,54 @@ void setup() {
 void loop() {
   MIDI.read();
 
-  Serial.print("Connected: ");
-  Serial.println(isConnected);
+  // Serial.print("Connected: ");
+  // Serial.println(isConnected);
 
   if (isConnected) {
-    sensor1Dist = sonar1.ping_cm();
-    Serial.print("Dist: ");
-    Serial.println(sensor1Dist);
+    olderDist = oldDist;
+    oldDist = sensor1Dist;
+    sensor1Dist = sonar1.ping_cm(); 
+    Serial.print("Dist: ");  
+    Serial.println(sensor1Dist); 
 
-    int newNote = -1;
+    if (abs(sensor1Dist - oldDist)  < viableChange) {
+      sensor1Dist = oldDist;   
+    }  
 
-    Serial.print("NewNote check: ");
-    Serial.println(sensor1Dist > 0 && sensor1Dist <= 5 ? "in range" : "out of range");
-    if (sensor1Dist > 0 && sensor1Dist <= 5) newNote = 60; // C
-    else if (sensor1Dist <= 10) newNote = 62; // D
-    else if (sensor1Dist <= 15) newNote = 64; // E
-    else if (sensor1Dist <= 20) newNote = 65; // F
-    else if (sensor1Dist <= 25) newNote = 67; // G
-    else if (sensor1Dist <= 30) newNote = 69; // A
-    else if (sensor1Dist <= 35) newNote = 71; // B
-
-    // Only change note if it actually changed
-    if (newNote != lastNote) {
-      if (lastNote != -1) {
-        MIDI.sendNoteOff(lastNote, 0, 1); // stop old note
-      }
-      //if (newNote != -1) {
-        MIDI.sendNoteOn(newNote, 100, 1); // play new note
-        Serial.println(newNote);
-      //}
-      lastNote = newNote;
+    if (oldDist > 60) { 
+      smoothed = sensor1Dist; 
+    } else {
+      smoothed = amtChange * sensor1Dist + (1 - amtChange) * smoothed; // gradually changes notes
     }
-
-    delay(50);
+    // Serial.print("NewNote check: ");
+    // Serial.println(sensor1Dist > 0 && sensor1Dist <= 5 ? "in range" : "out of range");
+    if (abs(sensor1Dist - oldDist) < movingAmt && abs(oldDist - olderDist) < movingAmt ) {
+      if (smoothed > 0 && smoothed <= 5) {newNote = 60; Serial.println("C");} // C
+      else if (smoothed <= 10) {newNote = 61; Serial.println("C#");} // C Sharp
+      else if (smoothed <= 15) {newNote = 62; Serial.println("D");} // D
+      else if (smoothed <= 20) {newNote = 63; Serial.println("D#");} // D Sharp
+      else if (smoothed <= 25) {newNote = 64; Serial.println("E");} // E
+      else if (smoothed <= 30) {newNote = 65; Serial.println("F");} // F
+      else if (smoothed <= 35) {newNote = 66; Serial.println("F#");} // F Sharp
+      else if (smoothed <= 40) {newNote = 67; Serial.println("G");} // G
+      else if (smoothed <= 45) {newNote = 68; Serial.println("G#");} // G Sharp
+      else if (smoothed <= 50) {newNote = 69; Serial.println("A");} // A
+      else if (smoothed <= 55) {newNote = 70; Serial.println("A#");} // A Sharp
+      else if (smoothed <= 65) {newNote = 71; Serial.println("B");} // B
+    } else {Serial.println("Not Playing");}
+    // Only change note if it actually changed
+      if (newNote != lastNote) {
+        if (lastNote != -1) {
+          MIDI.sendNoteOff(lastNote, 0, 1); // stop old note 
+        } 
+        if (newNote != -1) {  
+          MIDI.sendNoteOn(newNote, 100, 1); // play new note
+          // Serial.println(newNote); 
+        }  
+        lastNote = newNote;
+      } 
+      
+      delay(50);
+    
   }
 }
